@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // Repository에 findMyEmail이라는 회원 정보를 이메일로 찾는 로직 구현
         return memberRepository.findByEmail(email)
                 .map(this::createSpringSecurityUser)
                 .orElseThrow(RuntimeException::new);

@@ -24,11 +24,11 @@ class LoginServiceTest {
     void loginSuccessTest() {
 
         //given
-        var expectedEmail = "sieunkr@gmail.com";
+        var expectedEmail = "wnehdtjr5@gmail.com";
         var expectedRole = Role.USER.getCode();
 
         //when
-        Optional<MemberDTO> m = loginService.login("sieunkr@gmail.com", "password");
+        Optional<MemberDTO> m = loginService.login("wnehdtjr5@gmail.com", "password");
 
 
         //then
@@ -44,7 +44,7 @@ class LoginServiceTest {
 
         //given, when, then
         assertThrows(BadCredentialsException.class, () -> {
-            loginService.login("sieunkr@gmail.com", "invalid_password");
+            loginService.login("wnehdtjr5@gmail.com", "invalid_password");
         });
     }
 }

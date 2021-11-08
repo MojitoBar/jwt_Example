@@ -47,10 +47,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+                // /api/v1/login으로 시작하는 요청은 인증 성공 여부와 상관없이 모두 접근 가능
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/v1/login/**").permitAll()
 
+                // /api/v1/coffees으로 시작하는 요청은 인증을 반드시 통과해야 하며, 인가(USER 권한)이 있는 사용자만 접근 가능
                 .antMatchers("/api/v1/coffees/**").hasAnyAuthority(Role.USER.getCode())
                 .anyRequest().authenticated()
 

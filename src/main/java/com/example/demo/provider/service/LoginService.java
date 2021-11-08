@@ -34,7 +34,7 @@ public class LoginService implements LoginUseCase {
         //사용자 비밀번호 체크, 패스워드 일치하지 않는다면 Exception 발생 및 이후 로직 실행 안됨
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-        //로그인 성공하면 인증 객체 생성 및 스프링 시큐리티 설정
+        //로그인 성공하면 인증 객체 생성 및 스프링 시큐리티 설정, 인증 객체를 전역으로 사용 가능 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         //TODO: 권한은 한개만 갖는다고 가정하고 구현하였는데.. 깔끔하지 않음
@@ -45,7 +45,7 @@ public class LoginService implements LoginUseCase {
                 .orElse(Role.UNKNOWN);
 
         MemberDTO memberDTO = MemberDTO.builder()
-                .userName("eddy")
+                .userName("mojito")
                 .email(email)
                 .role(role)
                 .build();
@@ -55,7 +55,7 @@ public class LoginService implements LoginUseCase {
 
     @Override
     public AuthToken createAuthToken(MemberDTO memberDTO) {
-
+        // 토큰 유효 시간
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(LOGIN_RETENTION_MINUTES).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(memberDTO.getEmail(), memberDTO.getRole().getCode(), expiredDate);
     }

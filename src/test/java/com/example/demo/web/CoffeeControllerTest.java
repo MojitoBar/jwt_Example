@@ -89,7 +89,7 @@ class CoffeeControllerTest {
 
 
     private String makeJwtAuthToken(Role role, Date expiredDate) {
-        return jwtAuthTokenProvider.createAuthToken("eddy", role.getCode(), expiredDate).getToken();
+        return jwtAuthTokenProvider.createAuthToken("mojito", role.getCode(), expiredDate).getToken();
     }
 
 }

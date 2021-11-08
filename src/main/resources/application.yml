@@ -14,7 +14,7 @@ spring:
 
   h2:
     console:
-      # URL: jdbc:h2:mem:testdb
+      URL: jdbc:h2:mem:testdb
       enabled: true
 
 jwt:
